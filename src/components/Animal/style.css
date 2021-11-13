@@ -1,0 +1,42 @@
+/* styly pro komponentu Animal */
+
+.zvire {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.93);
+  cursor: pointer;
+}
+
+.zvire:hover {
+  background-color: #f2e7da;
+}
+
+.zvire + .zvire {
+  border-top: 1px solid #ddd;
+}
+
+.zvire__foto {
+  flex: 0 0 100px;
+}
+
+.zvire__foto img {
+  display: block;
+  width: 80px;
+  border-radius: 3px;
+}
+
+.zvire__popis {
+  flex: 1;
+}
+
+.zvire__nazev {
+  font-family: 'Merriweather', serif;
+  font-size: 18px;
+}
+
+.zvire__latinsky {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  color: #888;
+}
