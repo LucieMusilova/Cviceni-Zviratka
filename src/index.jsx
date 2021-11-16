@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import './style.css';
 import AnimalDetail from './components/AnimalDetail/index';
 import AnimalList from './components/AnimalList/index';
-
+import Search from './components/Search/index';
 
 const App = () => {
   
@@ -11,6 +11,7 @@ const App = () => {
     const [detail, setDetail] = useState([]);
     const [zool, setZool] = useState([]);
     const [zoo, setZoo] = useState([]);
+    const [filteredData,setFilteredData] = useState([]);
 
     const fetchAnimal = () => {
       fetch('https://lrolecek.github.io/zviratka-api/zvirata.json')
@@ -19,6 +20,7 @@ const App = () => {
         setAnimal(data.zvirata);
         setDetail(data.zvirata[0]);
         setZoo(data.zvirata[0].zoo);
+        setFilteredData(data.zvirata);
       })
     };
     
@@ -36,8 +38,8 @@ const App = () => {
       fetchZoo();
     }, []);
 
-    console.log(animal)
-    console.log(zool)
+    //console.log(animal)
+    //console.log(zool)
 
   
     const getNumber = (n) => {
@@ -45,14 +47,20 @@ const App = () => {
       setZoo(animal[n - 1].zoo);
     }
 
+    function filterItems(a) {
+      setFilteredData(a);
+    }
 
     return(
         <>
         <h1>Zvířátka v ZOO</h1>
+        <Search search={filterItems} animal={animal}/>
         
         {animal && zool? 
         <div className="container">
-        <AnimalList animal={animal} numb={getNumber}/>
+
+          
+        <AnimalList animal={filteredData} numb={getNumber}/>
 
         <AnimalDetail zool={zool} zoo={zoo} animal={detail} />
         </div> : null }
