@@ -85,3 +85,6 @@
   grid-gap: 10px;
 }
 
+.detail__udaj-p {
+  list-style: none;
+}

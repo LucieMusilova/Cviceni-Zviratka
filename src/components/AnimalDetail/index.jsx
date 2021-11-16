@@ -3,7 +3,13 @@ import './style.css';
 
 
 
-const AnimalDetail = ({animal: {nazev, nazevLatinsky, domovina, biotop, potrava, velikost, popis, foto, zoo}}) => (
+const AnimalDetail = ({zool, zoo, animal: {nazev, nazevLatinsky, domovina, biotop, potrava, velikost, popis, foto}}) => {
+ 
+  
+   const name = zool.map((a, index) => zoo.indexOf(a.id) > -1 ? <li key={index}>{a.jmeno}</li> : null);
+
+
+  return(
 
 		<div className="detail">
 			<div className="detail__obsah">
@@ -38,13 +44,17 @@ const AnimalDetail = ({animal: {nazev, nazevLatinsky, domovina, biotop, potrava,
 							<h3>Velikost</h3>
 							<p>{velikost}</p>
 						</div>
+            <div className="detail__udaj">
+							<h3>Zvířátko najdete v: </h3>
+							<p className="detail__udaj-p">{name}</p>
+						</div>
 					</div>
 				</div>
 
 			</div>
 		</div>
-		
+  );
 
-);
+};
 
 export default AnimalDetail;
